@@ -44,3 +44,5 @@ def detect_license_plate(img_path='', model_path="pre-trained_weights.pt"):
         cv2.imwrite(save_path, cropped)
 
     return output
+
+detect_license_plate(img_path='src/CE5803BH.png', model_path="src/pre-trained_weights.pt")
