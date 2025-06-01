@@ -1,0 +1,24 @@
+# YOLOv8 from official GitHub
+ultralytics
+
+# Core Vision + OCR
+opencv-python
+easyocr
+torch
+torchvision
+
+# Flask API
+flask
+
+# Data & Training
+pandas
+numpy
+scikit-learn
+joblib
+matplotlib
+seaborn
+
+# Dev Tools
+pytest
+tqdm
+

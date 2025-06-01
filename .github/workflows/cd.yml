@@ -1,0 +1,39 @@
+name: CD - Deploy to Minikube
+
+on:
+  push:
+    branches: [ prod ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+    
+    - name: Make .kube directory
+      run: mkdir -p $HOME/.kube
+    
+    - name: Decode and configure kubeconfig
+      run: |
+        echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > $HOME/.kube/config
+
+    - name: Deploy to Minikube
+      run: |
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml
+    
+    - name: 6. Verify Deployment
+      run: |
+        echo "Waiting for rollout to finish..."
+        kubectl rollout status deployment/alpr-deployment --timeout=90s
+        echo "Pods:"
+        kubectl get pods
+        echo "Services:"
+        kubectl get svc

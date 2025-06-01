@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpr-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alpr-app
+  template:
+    metadata:
+      labels:
+        app: alpr-app
+    spec:
+      containers:
+        - name: alpr-container
+          image: chris128/alpr-app:latest
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: Always
+

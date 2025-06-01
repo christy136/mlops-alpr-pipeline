@@ -1,0 +1,5 @@
+train: /home/reachcjm/mlops-github-actions/src/yolo_dataset/images/train
+val: /home/reachcjm/mlops-github-actions/src/yolo_dataset/images/val
+
+nc: 1
+names: ['license_plate']

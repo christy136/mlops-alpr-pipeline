@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detection Result</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: url('https://images.unsplash.com/photo-1549924231-f129b911e442') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 70%;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .plate {
+            margin: 20px;
+        }
+
+        img {
+            max-width: 300px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+        }
+
+        h2, p {
+            margin-top: 10px;
+        }
+
+        a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Detection Result</h1>
+        {% for pred in predictions %}
+        <div class="result-img">
+            <img src="{{ url_for('static', filename=pred.image) }}" alt="Detected Plate">
+            <div class="text">Text: {{ pred.text }}</div>
+        </div>
+        {% endfor %}
+        <br><br>
+        <a href="{{ url_for('index') }}">Upload Another</a>
+    </div>
+</body>
+</html>
+
