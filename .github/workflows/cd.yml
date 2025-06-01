@@ -19,7 +19,7 @@ jobs:
     
     - name: Make .kube directory
       run: mkdir -p $HOME/.kube
-    
+
     - name: Decode and configure kubeconfig
       run: |
         echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > $HOME/.kube/config
